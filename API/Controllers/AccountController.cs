@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Services;
@@ -38,11 +39,7 @@ namespace API.Controllers
             var result = await signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
             if(result.Succeeded){
-                return new UserDto{
-                    DisplayName = user.DisplayName,
-                    Token = token.CreateToken(user),
-                    UserName = user.UserName
-                };
+                return CreateUserObject(user);
             }
 
             return Unauthorized();
@@ -69,15 +66,26 @@ namespace API.Controllers
             var result = await userManager.CreateAsync(user, registerDto.Password);
 
             if(result.Succeeded){
-                return new UserDto
+                return CreateUserObject(user);
+            }
+
+            return BadRequest("Problem registering User");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<UserDto>> GetCurrentUser(){
+            var user = await userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+
+            return CreateUserObject(user);
+        }
+
+        private UserDto CreateUserObject(UserAccount user){
+             return new UserDto
                 {
                     DisplayName = user.DisplayName,
                     Token = token.CreateToken(user),
                     UserName = user.UserName
                 };
-            }
-
-            return BadRequest("Problem registering User");
         }
     }
 }

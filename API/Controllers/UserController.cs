@@ -13,6 +13,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [AllowAnonymous]
     public class UserController : ControllerBase
     {
         private IMediator mediator;

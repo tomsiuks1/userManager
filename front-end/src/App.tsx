@@ -9,6 +9,8 @@ import UpdateUserForm from './forms/UpdateUserForm';
 import NavBar from './navigation/NavBar';
 import ModalContainer from './forms/ModalContainer';
 import HomePage from './navigation/HomePage';
+import LoginForm from './account/LoginForm';
+import RegisterForm from './account/RegisterForm';
 
 
 function App() {
@@ -28,8 +30,10 @@ function App() {
       <Route exact path='/users/add' component={AddUserForm} /> 
       <Route exact path='/users/details/:id' component={UserDetails} />
       <Route exact path='/users/update/:id' component={UpdateUserForm} />
+      <Route exact path='/login' component={LoginForm} />
+      <Route exact path='/register' component={RegisterForm} />
       {/* <Route exact path='/'>
-        <Redirect to='/users' />
+        <Redirect to='/' />
       </Route> */}
     </Fragment>
   );

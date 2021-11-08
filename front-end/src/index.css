@@ -9,6 +9,7 @@ body{
 
 
 .ui.inverted.top.fixed.menu {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Mochiy Pop P One', sans-serif;
   background-image: linear-gradient(135deg, rgb(10, 75, 115) 0%, rgb(200, 138, 255) 69%, rgb(20, 50, 160) 89%) !important;
 }

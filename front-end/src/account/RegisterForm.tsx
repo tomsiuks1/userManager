@@ -4,7 +4,6 @@ import { Button, Header } from "semantic-ui-react";
 import TextInput from "../forms/inputs/TextInput";
 import { useStore } from "../stores/store";
 import * as Yup from 'yup';
-import ValidationErrors from "../errors/ValidationErrors";
 
 
 export default function RegisterForm(){

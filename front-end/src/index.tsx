@@ -5,16 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
 import { store, StoreContext } from './stores/store';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 
 export const history = createBrowserHistory()
 
 ReactDOM.render(
     <StoreContext.Provider value={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <App />
-      </BrowserRouter>
+      </Router>
     </StoreContext.Provider>,
   document.getElementById('root')
 );

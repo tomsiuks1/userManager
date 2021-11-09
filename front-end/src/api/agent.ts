@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { AccountRegisterLogin, AccountSendBack } from "../data/accountUser";
 import { User } from "../data/user";
 import { store } from "../stores/store";

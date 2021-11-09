@@ -6,24 +6,28 @@ import ListData from './ListData';
 import AddUserForm from './forms/AddUserForm';
 import UserDetails from './UserDetails';
 import UpdateUserForm from './forms/UpdateUserForm';
-import NavBar from './navigation/NavBar';
 import ModalContainer from './forms/ModalContainer';
 import HomePage from './navigation/HomePage';
 import LoginForm from './account/LoginForm';
 import RegisterForm from './account/RegisterForm';
+import { observer } from 'mobx-react-lite';
+import { history } from '.';
 
 
 function App() {
-  const {userStore} = useStore();
+  const { accountStore, serverStore} = useStore();
 
   useEffect(() => {
-    userStore.loadUsers();
-    console.log('render');
-  }, [userStore, userStore.users])
+    if(serverStore.token){
+      accountStore.getUser();
+    } else {
+      history.push('/');
+    }
+
+  }, [serverStore, accountStore])
 
   return (
     <Fragment>
-      <NavBar />
       <ModalContainer />
       <Route exact path='/' component={HomePage} />
       <Route exact path='/users' component={ListData} />
@@ -39,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

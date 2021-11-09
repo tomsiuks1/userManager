@@ -20,10 +20,12 @@ export default class AccountStore{
             store.serverStore.setToken(user.token);
 
             runInAction(() => 
+            {
                 this.account = user
+            }
             );
             
-            history.push('/users');
+            history.push('/users')
             store.modalStore.closeModal();
         } catch (error) {
             console.log(error)

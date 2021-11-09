@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { User } from "../data/user";
+import { store } from "./store";
 
 
 
@@ -56,6 +57,7 @@ export default class UserStore{
             runInAction(() => {
                 this.users.push(user);
             })
+            store.modalStore.closeModal();
         } catch (error) {
             console.log(error);
         }

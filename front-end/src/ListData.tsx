@@ -1,7 +1,9 @@
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Icon, Table } from "semantic-ui-react";
 import AddUserForm from "./forms/AddUserForm"; 
+import NavBar from "./navigation/NavBar";
 import { useStore } from "./stores/store";
 
 
@@ -14,9 +16,16 @@ export default observer(function ListData() {
         history.push(path);
     }
 
+    useEffect(() => {
+        if(userStore.users.length === 0){
+            userStore.loadUsers();
+        }
+    }, [userStore])
+
     return (
         <>
-            <Table compact selectable>
+        <NavBar />
+            <Table compact selectable style={{marginTop: 20}}>
                 <Table.Header>
                     <Table.Row >
                         <Table.HeaderCell />

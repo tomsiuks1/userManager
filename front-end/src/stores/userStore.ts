@@ -65,13 +65,14 @@ export default class UserStore{
 
     deleteUser = async (id: string) => {
         try{
-            
-            await agent.Users.DeleteUser(+id);
-            
+            var idnum: number = +id;
+            await agent.Users.DeleteUser(idnum);
             runInAction(() => {
                 let idnum: number = +id;
                 this.users = this.users.filter(user => user.id !== idnum);
+                store.modalStore.closeModal();
             })
+            
         } catch(error){
             console.log(error);
         }
@@ -83,7 +84,8 @@ export default class UserStore{
             runInAction(() => {
                 const ind = this.users.map(function(e) {return e.id}).indexOf(user.id);
                 this.users[ind] = user;
-            })   
+            })
+            store.modalStore.closeModal();   
         } catch (error){
             console.log(error);
         }

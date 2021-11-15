@@ -23,7 +23,7 @@ namespace Persistence
                 }
             }
 
-            if (context.Users.Any())
+            if (context.User.Any())
             {
                 return;
             }
@@ -110,7 +110,7 @@ namespace Persistence
                 },
             };
 
-            await context.Users.AddRangeAsync(users);
+            await context.User.AddRangeAsync(users);
             await context.SaveChangesAsync();
         }
     }

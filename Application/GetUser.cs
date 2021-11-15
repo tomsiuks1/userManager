@@ -27,7 +27,7 @@ namespace Application
 
             public async Task<User> Handle(Query request, CancellationToken cancellationToken)
             {
-                var user = await context.Users.FindAsync(request.id);
+                var user = await context.User.FindAsync(request.id);
                 return user;
             }
         }

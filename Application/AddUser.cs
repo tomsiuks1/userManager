@@ -27,7 +27,7 @@ namespace Application
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 if(request.User != null){
-                    await context.Users.AddAsync(request.User);
+                    await context.User.AddAsync(request.User);
                     await context.SaveChangesAsync();
                 }
 

@@ -25,10 +25,10 @@ namespace Application
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await context.Users.FindAsync(request.id);
+                var user = await context.User.FindAsync(request.id);
 
                 if(user != null){
-                    context.Users.Remove(user);
+                    context.User.Remove(user);
                     await context.SaveChangesAsync();
                 }
 

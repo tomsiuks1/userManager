@@ -8,7 +8,7 @@ import { useStore } from "../stores/store";
 
 export default observer(function NavBar() {
   const { accountStore: { account, logout } } = useStore()
-  const [state, setState] = useState("home");
+  const [state, setState] = useState("Feed");
   const { modalStore } = useStore();
   const history = useHistory();
 

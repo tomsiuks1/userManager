@@ -14,11 +14,11 @@ namespace Persistence
         {   
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
 
-        public Task FindAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        // public Task FindAsync(int id)
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }

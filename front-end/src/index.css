@@ -8,9 +8,9 @@ body{
   background-image: linear-gradient(135deg, rgb(10, 75, 115) 0%, rgb(200, 138, 255) 69%, rgb(20, 50, 160) 89%) !important;
 }
 
-.masthead {
+.MainPage {
   display: flex;
   align-items: center;
-  background-color: grey!important;
+  background-image: linear-gradient(135deg, rgb(10, 75, 115) 0%, rgb(200, 138, 255) 69%, rgb(20, 50, 160) 89%) !important;
   height: 100vh;
 }

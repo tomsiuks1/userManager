@@ -29,7 +29,7 @@ namespace Application
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await context.Users.FindAsync(request.User.id);
+                var user = await context.User.FindAsync(request.User.id);
 
                 if(user != null){
                     mapper.Map(request.User, user);

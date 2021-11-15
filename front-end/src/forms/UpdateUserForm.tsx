@@ -1,18 +1,20 @@
 import { observer } from "mobx-react-lite";
 import { ChangeEvent, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
 import { User } from "../data/user";
 import { useStore } from "../stores/store";
 
+interface Props{
+  id: string;
+}
 
-export default observer(function UpdateUserForm() {
+export default observer(function UpdateUserForm({id}:Props) {
     const {userStore} = useStore();
     const history = useHistory();
-    const {id} = useParams<{id: string}>();
     
     let idnum: number = +id;
-    const temp = userStore.users.find(user => user.id === +id);
+    const temp = userStore.users.find(user => user.id === idnum);
     const [user, setUser] = useState<User>({
         id: idnum,
         userId: temp ? temp.userId : NaN,
@@ -40,7 +42,7 @@ export default observer(function UpdateUserForm() {
     };
 
     return(
-        <Form style={{margin: 50, width: 300}} onSubmit={handleClick}>
+        <Form onSubmit={handleClick}>
         <Form.Field>
           <label>User Id</label>
           <Form.Input required type='number' placeholder='User Id' name='userId' value={user.userId} onChange={handleInputChange} />
@@ -54,7 +56,7 @@ export default observer(function UpdateUserForm() {
           <Form.Input required type='text' placeholder='Body' name='body' value={user.body} onChange={handleInputChange} />
         </Form.Field>
         <Button color='blue' type='submit'>Submit</Button>
-        <Button onClick={handleCancel} floated='left' type='button' basic >Cancel</Button>
+        <Button onClick={handleCancel} floated='left' type='button' basic>Cancel</Button>
       </Form>
     )
 })

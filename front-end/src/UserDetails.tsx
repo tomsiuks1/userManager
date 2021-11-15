@@ -1,16 +1,18 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Table } from "semantic-ui-react";
+import ConfirmForm from "./confirmation/ConfirmForm";
+import UpdateUserForm from "./forms/UpdateUserForm";
+import NavBar from "./navigation/NavBar";
 import { useStore } from "./stores/store"
 
 
 export default observer(function UserDetails() {
-    const history = useHistory();
     const {id} = useParams<{id: string}>();
-    const {userStore} = useStore();
-    const {deleteUser, loadUser, user} = userStore;
+    const {userStore, modalStore} = useStore();
+    const {loadUser, user} = userStore;
 
     useEffect(() => {
         if(id){
@@ -18,23 +20,10 @@ export default observer(function UserDetails() {
         }
     }, [id, loadUser])
 
-
-    function handleDelete(){
-        if(id){
-            deleteUser(id);
-        }
-        let path = '/users';
-        history.push(path);
-    }
-
-    function handleClick(id: string){
-        let path = `/users/update/${id}`;
-        history.push(path);
-    }
-
     return(
         <>
-        <Table compact>
+        <NavBar />
+        <Table compact style={{marginTop: 20}}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell />
@@ -68,7 +57,7 @@ export default observer(function UserDetails() {
                         > Back to list
                         </Button>
                         <Button
-                            onClick={() => {handleClick(id)}}
+                            onClick={() => modalStore.openModal(<UpdateUserForm id={id}/>)}
                             floated='left'
                             size='small'
                             color='grey'
@@ -77,7 +66,7 @@ export default observer(function UserDetails() {
                         <Button
                             floated='left'
                             size='small'
-                            color='red' onClick={handleDelete}
+                            color='red' onClick={() => modalStore.openModal(<ConfirmForm id={id}/>)}
                         > Delete User
                         </Button>
                     </Table.HeaderCell>

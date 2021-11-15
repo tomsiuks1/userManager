@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { ChangeEvent, useState } from "react";
 import { useHistory } from "react-router";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Button, Form, Header, Segment } from "semantic-ui-react";
 import { User } from "../data/user";
 import { useStore } from "../stores/store";
 
@@ -39,6 +39,7 @@ export default observer(function AddUserForm() {
     return(
       <Segment clearing basic>
         <Form onSubmit={handleClick}>
+          <Header as='h1' textAlign='center'>Add new User</Header>
         <Form.Field>
           <label>User Id</label>
           <Form.Input required type='number' placeholder='User Id' name='userId' value={user.userId || ''} onChange={handleInputChange} />

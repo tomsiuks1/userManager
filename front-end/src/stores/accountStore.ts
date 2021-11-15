@@ -54,7 +54,8 @@ export default class AccountStore{
         store.serverStore.setToken(user.token);
         
         runInAction(() => this.account = user);
-        history.push('/users');
         store.modalStore.closeModal();
+        history.push('/users');
+        
     }
 }

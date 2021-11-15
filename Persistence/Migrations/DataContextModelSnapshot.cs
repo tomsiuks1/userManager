@@ -33,7 +33,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Domain.UserAccount", b =>

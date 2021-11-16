@@ -19,12 +19,15 @@ export default observer(function AddUserForm() {
     });
 
     function handleClick(){
+      
         let newUser = {
             ...user
         };
         if(users.find( x => x.id === newUser.id)){
-          
-        }else {
+
+        } else
+        {
+          console.log('test');
           userStore.addUser(newUser);
         }
         let path = `/users`;
